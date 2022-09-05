@@ -2,12 +2,10 @@ import { useState } from "react";
 import "./App.css";
 
 // let count = 0;
-
+let id = null;
 function App() {
   const [notificationClass, setNotificationClass] = useState(false);
   const [notificationElement, setNotificationElement] = useState([]);
-
-  let id = null;
 
   const onBtnClickHandler = () => {
     // count = count + 1;
@@ -21,7 +19,12 @@ function App() {
 
     id = setTimeout(() => {
       // setNotificationClass(false);
-      setNotificationElement(notificationElement.pop())
+      // setNotificationElement(notificationElement.pop())
+      
+      let element = [...notificationElement];
+      console.log(element)
+      element.pop();
+      setNotificationElement(element);
     }, 3000);
 
     setNotificationElement([...notificationElement, id]);
@@ -37,7 +40,6 @@ function App() {
     <div className="App">
       <div id="container" className={notificationClass ? "toast" : null}>
         {notificationElement.map((element) => (
-
           <div>
             <div style={{ margin: "10px" }}>The Challenge is crazy</div>
           </div>
